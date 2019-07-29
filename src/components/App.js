@@ -10,54 +10,55 @@ class App extends React.Component {
     this.state = {
       pets: [],
       filters: {
-        type: 'all',
-      },
+        type: 'all'
+      }
     }
-    this.handleChangeType = this.handleChangeType.bind(this)
-    this.handleFindPetsClick = this.handleFindPetsClick.bind(this)
     this.onAdoptPet = this.onAdoptPet.bind(this)
+    this.onChangeType = this.onChangeType.bind(this)
+    this.onFindPetsClick = this.onFindPetsClick.bind(this)
   }
 
-  handleChangeType = () => {
-    this.setState({
-      type: this.state.filters.type
-    })
-  };
-
-  handleFindPetsClick = () => {
+  onFindPetsClick = () => {
     if(this.state.filters.type === 'all'){
-      fetch('/api/pets').then(resp => resp.json()).then(pets => {
+      fetch('/api/pets').then(response => response.json()).then(pets => {
         this.setState({
           pets: pets
-        })
-      })
-
-    }else{
-      fetch(`/api/pets?type=${this.state.filters.type}`).then(resp => resp.json()).then(pet => {
+        });
+      });
+    } else{
+      fetch(`/api/pets?type=${this.state.filters.type}`).then(response => response.json()).then(pet => {
         this.setState({
           pets: pet
-        })
-      })
-    }    
+        });
+      });
+    }
+  };
+
+  onChangeType = (type) => {
+    this.setState({
+      filters:{
+        type: type
+      }
+    })
   };
 
   onAdoptPet = (id) => {
-    let pet = this.state.pets.find((pet) => {
-      return pet.id = this
-    },id );
-    let newPet = (oldPet) => {
+    let pet = this.state.pets.find(function(pet) {
+      return pet.id === this
+    },id)
+    debugger
+    let newPets = this.state.pets.map(function(oldPet){
       if(oldPet === pet){
         oldPet.isAdopted = true
-        return oldPet;
-      } else{
-        return oldPet;
-      };
-    };
+        return oldPet
+      }else{
+        return oldPet
+      }
+    })
     this.setState({
-      pets: newPet
+      pets: newPets
     })
   };
-
 
   render() {
     return (
@@ -68,7 +69,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.handleChangeType} onFindPetsClick={this.handleFindPetsClick} />
+              <Filters onChangeType={this.state.filters.type} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet}/>
