@@ -1,35 +1,30 @@
-import React from 'react'
-
-class Pet extends React.Component {
-  render() {
-    return (
-      <div className="card">
-        <div className="content">
-          <a className="header">
-            {
-              this.props.pet.gender === "female" ? '♀' :
-              this.props.pet.gender === "male" ? '♂' :
-              this.props.pet.gender
-            }
-            {this.props.pet.name}
-          </a>
-          <div className="meta">
-            <span className="date">{this.props.pet.type}</span>
-          </div>
-          <div className="description">
-            <p>Age: {this.props.pet.age}</p>
-            <p>Weight: {this.props.pet.weight}</p>
-          </div>
-        </div>
-        <div className="extra content">
-          {this.props.isAdopted
-            ? <button className="ui disabled button">Already adopted</button>
-            : <button className="ui primary button" onChange={this.onAdoptPet}>Adopt pet</button>
-          }
-        </div>
-      </div>
-    )
-  }
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+class Pet extends react_1.default.Component {
+    render() {
+        return (react_1.default.createElement("div", { className: "card" },
+            react_1.default.createElement("div", { className: "content" },
+                react_1.default.createElement("a", { className: "header" },
+                    this.props.pet.gender === "female" ? '♀' :
+                        this.props.pet.gender === "male" ? '♂' :
+                            this.props.pet.gender,
+                    this.props.pet.name),
+                react_1.default.createElement("div", { className: "meta" },
+                    react_1.default.createElement("span", { className: "date" }, this.props.pet.type)),
+                react_1.default.createElement("div", { className: "description" },
+                    react_1.default.createElement("p", null,
+                        "Age: ",
+                        this.props.pet.age),
+                    react_1.default.createElement("p", null,
+                        "Weight: ",
+                        this.props.pet.weight))),
+            react_1.default.createElement("div", { className: "extra content" }, this.props.isAdopted
+                ? react_1.default.createElement("button", { className: "ui disabled button" }, "Already adopted")
+                : react_1.default.createElement("button", { className: "ui primary button", onChange: this.onAdoptPet }, "Adopt pet"))));
+    }
 }
-
-export default Pet
+exports.default = Pet;

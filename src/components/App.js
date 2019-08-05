@@ -1,75 +1,55 @@
-import React from 'react'
-
-import Filters from './Filters'
-import PetBrowser from './PetBrowser'
-
-class App extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {
-      pets: [],
-      filters: {
-        type: 'all'
-      }
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const Filters_1 = __importDefault(require("./Filters"));
+const PetBrowser_1 = __importDefault(require("./PetBrowser"));
+class App extends react_1.default.Component {
+    constructor(props) {
+        super(props);
+        this.onChangeType = type => {
+            this.setState({
+                ...this.state,
+                filters: {
+                    ...this.state.filters,
+                    type: type
+                }
+            });
+        };
+        this.onFindPetsClick = () => this.loadPets();
+        this.loadPets = () => {
+            let petsApiUrl = (this.state.filters.type === "all"
+                ? "/api/pets"
+                : `api/pets?type=${this.state.filters.type}`);
+            fetch(petsApiUrl)
+                .then(resp => resp.json())
+                .then(pets => this.setState({
+                ...this.state,
+                pets: pets
+            }));
+        };
+        this.onAdoptPet = e => {
+        };
+        this.state = {
+            pets: [],
+            filters: {
+                type: 'all'
+            }
+        };
+        this.loadPets();
     }
-    this.getPets()
-  }
-
-  onChangeType = type => {
-    this.setState({
-      ...this.state,
-      filters: {
-        ...this.state.filters,
-        type: type
-      }
-    })
-  }
-
-  onFindPetsClick = () => this.getPets()
-
-  getPets = () => {
-    let petsApiUrl = (this.state.filters.type === "all"
-      ? "/api/pets"
-      : `api/pets?type=${this.state.filters.type}`)
-
-    fetch(petsApiUrl)
-      .then(resp => resp.json())
-      .then(pets =>
-        this.setState({
-          ...this.state,
-          pets: pets
-        })
-      )
-  }
-
-  onAdoptPet = e => {
-    
-  }
-
-  render() {
-    return (
-      <div className="ui container">
-        <header>
-          <h1 className="ui dividing header">React Animal Shelter</h1>
-        </header>
-        <div className="ui container">
-          <div className="ui grid">
-            <div className="four wide column">
-              <Filters 
-                filters={this.state.filters}
-                onChangeType={this.onChangeType}
-                onFindPetsClick={this.onFindPetsClick}
-              />
-            </div>
-            <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+    render() {
+        return (react_1.default.createElement("div", { className: "ui container" },
+            react_1.default.createElement("header", null,
+                react_1.default.createElement("h1", { className: "ui dividing header" }, "React Animal Shelter")),
+            react_1.default.createElement("div", { className: "ui container" },
+                react_1.default.createElement("div", { className: "ui grid" },
+                    react_1.default.createElement("div", { className: "four wide column" },
+                        react_1.default.createElement(Filters_1.default, { filters: this.state.filters, onChangeType: this.onChangeType, onFindPetsClick: this.onFindPetsClick })),
+                    react_1.default.createElement("div", { className: "twelve wide column" },
+                        react_1.default.createElement(PetBrowser_1.default, { pets: this.state.pets, onAdoptPet: this.onAdoptPet }))))));
+    }
 }
-
-export default App
+exports.default = App;
