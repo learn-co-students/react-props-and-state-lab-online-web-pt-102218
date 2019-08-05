@@ -1,11 +1,20 @@
-import React from 'react'
-
-import Pet from './Pet'
-
-class PetBrowser extends React.Component {
-  render() {
-    return <div className="ui cards">PET COMPONENT SHOULD GO HERE</div>
-  }
+"use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importStar(require("react"));
+const Pet_1 = __importDefault(require("./Pet"));
+class PetBrowser extends react_1.Component {
+    render() {
+        return (react_1.default.createElement("div", { className: "ui cards" }, this.props.pets.map(pet => react_1.default.createElement(Pet_1.default, { pet: pet, onAdoptPet: this.props.onAdoptPet, key: pet.id }))));
+    }
 }
-
-export default PetBrowser
+exports.default = PetBrowser;
