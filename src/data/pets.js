@@ -318,5 +318,5 @@ const allPets = [
     },
 ];
 exports.getAll = () => allPets;
-exports.getByType = type => allPets.filter(pet => pet.type === type);
-exports.getBetweenAge = (from, to) => allPets.filter(pet => pet.age >= from && pet.age <= to);
+exports.getByType = (type) => allPets.filter((pet) => pet.type === type);
+exports.getBetweenAge = (from, to) => allPets.filter((pet) => pet.age >= from && pet.age <= to);

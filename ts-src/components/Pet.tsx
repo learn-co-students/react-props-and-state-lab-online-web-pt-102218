@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { Component, MouseEvent, MouseEventHandler } from 'react'
+import {PetData, PetDataType, PetDataGender} from '../types'
 
-class Pet extends React.Component {
+interface PetProps {
+  pet: PetData,
+  isAdopted: boolean,
+  onAdoptPet: MouseEventHandler,
+}
+
+class Pet extends Component<PetProps>{
   render() {
     return (
       <div className="card">
@@ -24,7 +31,7 @@ class Pet extends React.Component {
         <div className="extra content">
           {this.props.isAdopted
             ? <button className="ui disabled button">Already adopted</button>
-            : <button className="ui primary button" onChange={this.onAdoptPet}>Adopt pet</button>
+            : <button className="ui primary button" onClick={this.props.onAdoptPet}>Adopt pet</button>
           }
         </div>
       </div>

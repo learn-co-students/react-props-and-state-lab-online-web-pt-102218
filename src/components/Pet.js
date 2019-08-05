@@ -1,10 +1,14 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-class Pet extends react_1.default.Component {
+const react_1 = __importStar(require("react"));
+class Pet extends react_1.Component {
     render() {
         return (react_1.default.createElement("div", { className: "card" },
             react_1.default.createElement("div", { className: "content" },
@@ -24,7 +28,7 @@ class Pet extends react_1.default.Component {
                         this.props.pet.weight))),
             react_1.default.createElement("div", { className: "extra content" }, this.props.isAdopted
                 ? react_1.default.createElement("button", { className: "ui disabled button" }, "Already adopted")
-                : react_1.default.createElement("button", { className: "ui primary button", onChange: this.onAdoptPet }, "Adopt pet"))));
+                : react_1.default.createElement("button", { className: "ui primary button", onClick: this.props.onAdoptPet }, "Adopt pet"))));
     }
 }
 exports.default = Pet;

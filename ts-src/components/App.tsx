@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { Component, MouseEvent } from 'react'
 
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
+import {PetData, PetDataType, PetDataGender} from '../types'
 
-class App extends React.Component {
-  constructor(props) {
+interface AppState {
+  pets: PetData[],
+  filters: {
+    type: string
+  }
+}
+
+class App extends Component<{}, AppState>{
+
+  constructor(props?: {}) {
     super(props)
 
     this.state = {
@@ -16,7 +25,7 @@ class App extends React.Component {
     this.loadPets()
   }
 
-  onChangeType = type => {
+  onChangeType = (type: PetDataType) => {
     this.setState({
       ...this.state,
       filters: {
@@ -43,7 +52,7 @@ class App extends React.Component {
       )
   }
 
-  onAdoptPet = e => {
+  onAdoptPet(e: React.MouseEvent) {
     
   }
 

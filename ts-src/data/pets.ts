@@ -1,4 +1,5 @@
-const allPets = [
+import {PetData, PetDataType} from '../types'
+const allPets: PetData[] = [
   {
     id: '5c142d9e-ea45-4231-8146-cccf71c704c0',
     type: 'dog',
@@ -316,8 +317,10 @@ const allPets = [
   },
 ];
 
-export const getAll = () => allPets;
+export const getAll = (): PetData[] => allPets;
 
-export const getByType = type => allPets.filter(pet => pet.type === type);
+export const getByType = (type: PetDataType) =>
+  allPets.filter((pet: PetData) => pet.type === type);
 
-export const getBetweenAge = (from, to) => allPets.filter(pet => pet.age >= from && pet.age <= to);
+export const getBetweenAge = (from: number, to: number) =>
+  allPets.filter((pet: PetData) => pet.age >= from && pet.age <= to);

@@ -1,15 +1,22 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+const react_1 = __importStar(require("react"));
 const Filters_1 = __importDefault(require("./Filters"));
 const PetBrowser_1 = __importDefault(require("./PetBrowser"));
-class App extends react_1.default.Component {
+class App extends react_1.Component {
     constructor(props) {
         super(props);
-        this.onChangeType = type => {
+        this.onChangeType = (type) => {
             this.setState({
                 ...this.state,
                 filters: {
@@ -30,8 +37,6 @@ class App extends react_1.default.Component {
                 pets: pets
             }));
         };
-        this.onAdoptPet = e => {
-        };
         this.state = {
             pets: [],
             filters: {
@@ -39,6 +44,8 @@ class App extends react_1.default.Component {
             }
         };
         this.loadPets();
+    }
+    onAdoptPet(e) {
     }
     render() {
         return (react_1.default.createElement("div", { className: "ui container" },
