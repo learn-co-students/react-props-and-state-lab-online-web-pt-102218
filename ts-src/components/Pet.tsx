@@ -3,11 +3,15 @@ import {PetData, PetDataType, PetDataGender} from '../types'
 
 interface PetProps {
   pet: PetData,
-  isAdopted: boolean,
-  onAdoptPet: MouseEventHandler,
+  onAdoptPet: (id: string) => void,
 }
 
 class Pet extends Component<PetProps>{
+
+  handleAdaptClick = () => {
+    this.props.onAdoptPet(this.props.pet.id)
+  }
+  
   render() {
     return (
       <div className="card">
@@ -29,9 +33,9 @@ class Pet extends Component<PetProps>{
           </div>
         </div>
         <div className="extra content">
-          {this.props.isAdopted
+          {this.props.pet.isAdopted
             ? <button className="ui disabled button">Already adopted</button>
-            : <button className="ui primary button" onClick={this.props.onAdoptPet}>Adopt pet</button>
+            : <button className="ui primary button" onClick={this.handleAdaptClick}>Adopt pet</button>
           }
         </div>
       </div>

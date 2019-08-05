@@ -5,7 +5,7 @@ import Pet from './Pet'
 
 type PetBrowserProps = {
   pets: PetData[],
-  onAdoptPet: (e: React.MouseEvent) => void
+  onAdoptPet: (id: string) => void
 }
 
 class PetBrowser extends Component<PetBrowserProps> {
@@ -13,7 +13,7 @@ class PetBrowser extends Component<PetBrowserProps> {
     return (
       <div className="ui cards">
         {this.props.pets.map(pet =>
-          <Pet pet={pet} isAdopted={pet.isAdopted} onAdoptPet={this.props.onAdoptPet} key={pet.id} />
+          <Pet pet={pet} onAdoptPet={this.props.onAdoptPet} key={pet.id} />
         )}
       </div>
     )

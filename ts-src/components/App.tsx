@@ -40,7 +40,7 @@ class App extends Component<{}, AppState>{
   loadPets = () => {
     let petsApiUrl = (this.state.filters.type === "all"
       ? "/api/pets"
-      : `api/pets?type=${this.state.filters.type}`)
+      : `/api/pets?type=${this.state.filters.type}`)
 
     fetch(petsApiUrl)
       .then(resp => resp.json())
@@ -52,8 +52,13 @@ class App extends Component<{}, AppState>{
       )
   }
 
-  onAdoptPet(e: React.MouseEvent) {
-    
+  onAdoptPet = (id: string) => {
+    let pets = this.state.pets
+    pets.find(pet => pet.id === id).isAdopted = true
+    this.setState({
+      ...this.state,
+      pets: pets,
+    })
   }
 
   render() {

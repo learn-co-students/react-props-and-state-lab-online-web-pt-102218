@@ -29,13 +29,21 @@ class App extends react_1.Component {
         this.loadPets = () => {
             let petsApiUrl = (this.state.filters.type === "all"
                 ? "/api/pets"
-                : `api/pets?type=${this.state.filters.type}`);
+                : `/api/pets?type=${this.state.filters.type}`);
             fetch(petsApiUrl)
                 .then(resp => resp.json())
                 .then(pets => this.setState({
                 ...this.state,
                 pets: pets
             }));
+        };
+        this.onAdoptPet = (id) => {
+            let pets = this.state.pets;
+            pets.find(pet => pet.id === id).isAdopted = true;
+            this.setState({
+                ...this.state,
+                pets: pets,
+            });
         };
         this.state = {
             pets: [],
@@ -44,8 +52,6 @@ class App extends react_1.Component {
             }
         };
         this.loadPets();
-    }
-    onAdoptPet(e) {
     }
     render() {
         return (react_1.default.createElement("div", { className: "ui container" },

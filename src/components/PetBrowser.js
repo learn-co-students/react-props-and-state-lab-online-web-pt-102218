@@ -14,7 +14,7 @@ const react_1 = __importStar(require("react"));
 const Pet_1 = __importDefault(require("./Pet"));
 class PetBrowser extends react_1.Component {
     render() {
-        return (react_1.default.createElement("div", { className: "ui cards" }, this.props.pets.map(pet => react_1.default.createElement(Pet_1.default, { pet: pet, isAdopted: pet.isAdopted, onAdoptPet: this.props.onAdoptPet, key: pet.id }))));
+        return (react_1.default.createElement("div", { className: "ui cards" }, this.props.pets.map(pet => react_1.default.createElement(Pet_1.default, { pet: pet, onAdoptPet: this.props.onAdoptPet, key: pet.id }))));
     }
 }
 exports.default = PetBrowser;
